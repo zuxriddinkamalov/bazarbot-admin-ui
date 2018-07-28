@@ -12,6 +12,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "element-ui": "^2.4.4",
+    "ramda": "^0.25.0",
     "register-service-worker": "^1.0.0",
     "rxjs": "^6.2.2",
     "vue": "^2.5.16",

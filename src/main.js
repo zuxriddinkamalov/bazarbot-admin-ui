@@ -4,6 +4,7 @@ import ElementUI from 'element-ui'
 import App from './App.vue'
 import store from './store'
 import './registerServiceWorker'
+import routes from './router'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI, {locale: 'ruRU'})
@@ -14,7 +15,7 @@ const router = new Router({
     mode: 'hash',
     linkActiveClass: 'open active',
     scrollBehavior: function (to, from, savedPosition) {
-        return savedPosition || { x: 0, y: 0 }
+        return savedPosition || {x: 0, y: 0}
     }
 })
 
