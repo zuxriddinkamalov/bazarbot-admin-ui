@@ -1,8 +1,8 @@
 import axios from 'axios'
-import { push } from 'react-router-redux'
+import router from 'vue-router'
 import { path, is, equals, curry, prop, compose } from 'ramda'
 import { API_URL } from '../constants/api'
-import * as ROUTES from '../constants/routes'
+import * as ROUTES from '../constants/routing'
 import * as STATES from '../constants/states'
 import { openSnackbarAction, DANGER_TYPE } from '../components/Snackbar/actions'
 import toCamelCase from '../helpers/toCamelCase'
@@ -29,7 +29,7 @@ const errorInterceptors = curry((dispatch, error) => {
   const status = path(['response', 'status'], error)
 
   if (equals(INTERNAL_ERROR, status)) {
-    const redirect = dispatch(push)
+    const redirect = dispatch(router.push)
     return redirect(ROUTES.INTERNAL_SERVER_ERROR_URL)
   }
 
