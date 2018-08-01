@@ -1,40 +1,19 @@
 import Vue from 'vue'
-import Router from 'vue-router'
 import ElementUI from 'element-ui'
 import App from './App.vue'
 import store from './store'
 import './registerServiceWorker'
-import routes from './router'
-import * as ROUTES from './constants/routing'
-import {getToken} from "./helpers/token"
+import router from './router'
+import Resource from 'vue-resource'
+
+import 'element-ui/lib/theme-chalk/index.css'
+import {API_URL} from "./constants/api";
 
 Vue.config.productionTip = false
+Vue.use(Resource)
 Vue.use(ElementUI, {locale: 'ruRU'})
-Vue.use(Router)
 
-const router = new Router({
-    routes: routes,
-    mode: 'hash',
-    linkActiveClass: 'open active',
-    scrollBehavior: function (to, from, savedPosition) {
-        return savedPosition || {x: 0, y: 0}
-    }
-})
-
-router.beforeEach((to, from, next) => {
-    let token = getToken()
-    console.warn(token)
-    if (to.matched.some(record => record.meta.requiresAuth)) {
-        if (!token) {
-            next({ path: ROUTES.SIGN_IN_URL })
-        } else {
-            next()
-        }
-    } else {
-        next()
-    }
-
-})
+Vue.http.options.root = API_URL
 
 new Vue({
     router,

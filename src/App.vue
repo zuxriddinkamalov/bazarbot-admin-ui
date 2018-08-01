@@ -5,5 +5,6 @@
 </template>
 
 <style lang="less">
-
+  @import './less/global';
+  @import './less/reset';
 </style>
